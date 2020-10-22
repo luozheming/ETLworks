@@ -6,6 +6,7 @@
 ![design](./resources/picture/designs.png)
 
 ###Mysql/Oracle文件抽取
+
 由于代码具有通用性以及相似性，Mysql/Oracle的抽取结合在了一起，对接数据源为启信宝、万得、财汇。更新周期为：周五全量更新，其余时间为增量更新。运行起始时间为每天凌晨0点，由Airflow负责调度，每个任务Task中并行的抽取数目数为16。Task的上线数目为50。数据文件在CDH集群的命名路径为：
 
 - **${hive外部表数据存储路径}/${表名}/${分区字段1:分库名} /${分区字段2:时间}** 
@@ -20,6 +21,7 @@
 
 
 ###TD数仓文件抽取
+
 对于TD数仓文件的抽取采取SFTP的方式，由Airlow调度CDH的NameNode通过SFTP将数据文件传输到本地的文件目录下，
 随后再通过HDFS命令将数据文件提交到集群并修复分区，最后再删除本地的数据文件。
 Airflow在此处起到牵线搭桥的功能，由于当前行内数仓的SFTP解决方案存在两种版本，
@@ -30,6 +32,7 @@ Airflow在此处起到牵线搭桥的功能，由于当前行内数仓的SFTP解
 ![airflow](./resources/picture/TD.png)
 
 ###杭州离线分析平台数据抽取
+
 杭州离线分析平台的数据抽取主要是讲华为Fushion Insight大数据集群的数据文件导入到CDH大数据分析平台。由于Airflow和大数据平台的通信主要通过Beeline、Hdfs命令，而华为客户端的安装已经将Beeline命令高度封装，不方便以通过修改变量的方式同时连接华为FI集群以及dev的CDH集群，故采用Airflow机器将华为FI机器的数据文件通过Hdfs命令下载到本地，随后调度CDH的一台NameNode运用SFTP传输到节点客户端，再通过CDH客户端上的Hdfs命令将数据文件传输到对应的集群，随后删除流程过程中放在不必要位置的中转数据文件，更新的时间与调度的方式和Mysql/Oracle的文件抽取保持一致，文件路径的命名较为个性化，见腾飞采集到的Excel表格。
 ###Airflow调度详情
 ![monitor1](./resources/picture/monitor1.png)
@@ -48,7 +51,9 @@ Airflow在此处起到牵线搭桥的功能，由于当前行内数仓的SFTP解
 ![monitor1](./resources/picture/monitor5.png)
 
 ##文件存储目录及表命名规则
+
 #### 外部表hdfs存储路径命名规则:
+
 /data/externalData(外部数据)/数据源/表名/分区名1/分区名2
 
 |数据源|外部表路径|
@@ -64,7 +69,9 @@ Airflow在此处起到牵线搭桥的功能，由于当前行内数仓的SFTP解
 - 第二分区键为时间分区part_dt=                   
 - 多分区：/data/externalData/qxb/qxb_t_enterprises/part=0/part_dt=20200226
 - 若源表为单表则只有第一时间分区键part_dt=                                                      单时间分区：/data/externalData/qxb/qxb_t_patents/part_dt=20200226
+
 #### Hive表命名方法
+
 - 数据分层命名
 - 贴源层：stg
 - 基础层：fdm-x
