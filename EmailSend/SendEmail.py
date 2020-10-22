@@ -6,10 +6,10 @@ import json
 
 ## 登录接口服务，获取txtAccessToken
 def GetXAccessToken():
-    accessKey ="26aa897b915c4bef91e303d40d1bc5a1"
-    secretKey ="6747cbdfcef3700ef6a6da123c8686d66f3150320af61c2a3a32533311383d1d"
-    urlNameString = "http://yst-services-gateway-st.paas.cmbchina.cn/token?accessKey="+accessKey \
-                + "&secretKey="+secretKey
+    accessKey =""
+    secretKey =""
+    urlNameString = ""+accessKey \
+                + "="+secretKey
     responsedata = requests.get(urlNameString)
     data = eval(responsedata.text)
     if(responsedata.status_code == 200):

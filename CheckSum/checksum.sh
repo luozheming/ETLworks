@@ -1,6 +1,6 @@
 #!/bin/bash
 #@Author  : luozheming
-#@Contact : lzm931105@cmbchina.com
+#@Contact :
 #@File    : sqoopETL.sh
 #@Time    : 2020/2/20 15:16
 ##-----------------------------------------------------------------------------------------
@@ -27,13 +27,13 @@ mode=$2
 
 #静态变量
 #数据库配置表信息
-db_ip="55.14.58.23"
-db_port="3306"
-db_user="cmbcckg"
-db_pwd="Eccdg%2015"
-db_config_db="cckg01"
-db_config_table="sqoop_etl_conf"
-db_log_table="sqoop_etl_logs"
+db_ip=""
+db_port=""
+db_user=""
+db_pwd=""
+db_config_db=""
+db_config_table=""
+db_log_table=""
 
 #增量当前时间
 append_time=`date -d "-1 day" "+%Y-%m-%d %H:%M:%S"`

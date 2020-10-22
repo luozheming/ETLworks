@@ -1,6 +1,6 @@
 #!/bin/bash
 #@Author  : luozheming
-#@Contact : lzm931105@cmbchina.com
+#@Contact :
 #@File    : huaweiETL.sh
 #@Time    : 2020/3/23 10:16
 ##-----------------------------------------------------------------------------------------
@@ -24,13 +24,13 @@ tableNameOrg=$1
 
 #静态变量
 #数据库配置表信息
-db_ip="55.14.58.23"
-db_port="3306"
-db_user="cmbcckg"
-db_pwd="Eccdg%2015"
-db_config_db="cckg01"
-db_config_table="hdfs_etl_conf"
-db_log_table="sqoop_etl_logs"
+db_ip=""
+db_port=""
+db_user=""
+db_pwd=""
+db_config_db=""
+db_config_table=""
+db_log_table=""
 #抽取开始时间
 start_time=`date "+%Y-%m-%d %H:%M:%S"`
 #全量当前时间
