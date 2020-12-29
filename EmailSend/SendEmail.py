@@ -23,9 +23,9 @@ def getmysqldata(condition):
     #表头
     columns=['job_name','src_dbname','src_tablename','mode','success_flag','check_sum']
     df_init=pd.DataFrame(columns=columns)
-    conn = pymysql.Connect(host="55.14.58.23", port=3306,
-                           user="cmbcckg", password="Eccdg%2015",
-                           database="cckg01", charset="utf8")
+    conn = pymysql.Connect(host="", port=,
+                           user="", password="",
+                           database="", charset="")
     cur = conn.cursor()
     sql = "select job_name,src_dbname,src_tablename,mode,success_flag,check_sum from sqoop_etl_logs %s"%condition
     cur.execute(sql)
